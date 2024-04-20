@@ -1,4 +1,3 @@
-
 import json
 
 from tabulate import tabulate
@@ -21,7 +20,7 @@ def run(data_dict):
 
   generation_number = 0
   data = Data(data_dict)
-  print(data)
+
   _genetic_algorithm = GeneticAlgorithm(data=data)
   _population = Population(size=POPULATION_SIZE, data=data).sort_by_fitness()
 
@@ -44,6 +43,69 @@ if __name__ == '__main__' and __package__ is None:
 
     data_json = sys.argv[1]
     data_dict = json.loads(data_json)
-   
 
+ 
     run(data_dict)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # data_dict={
+    # "num_rooms": "2",
+    # "room_1_number": "CS101",
+    # "room_1_capacity": "20",
+    # "room_2_number": "CS202",
+    # "room_2_capacity": "30",
+    # "num_instructors": "2",
+    # "instructor_1_id": "123",
+    # "instructor_1_name": "Prof. Kumar",
+    # "instructor_2_id": "456",
+    # "instructor_2_name": "Ms. Lee",
+    # "num_courses": "3",
+    # "course_1_number": "CSE431",
+    # "course_1_name": "Algorithm",
+    # "course_1_max_students": "25",
+    # "course_1_num_instructors": "2",
+    # "course_1_instructor_1_id": "123",
+    # "course_1_instructor_2_id": "456",
+    # "course_2_number": "CSE311",
+    # "course_2_name": "Dsat struc",
+    # "course_2_max_students": "30",
+    # "course_2_num_instructors": "1",
+    # "course_2_instructor_1_id": "123",
+    # "course_3_number": "CSE220",
+    # "course_3_name": "DM",
+    # "course_3_max_students": "30",
+    # "course_3_num_instructors": "1",
+    # "course_3_instructor_1_id": "123",
+    # "num_departments": "1",
+    # "department_name": "CSEDep",
+    # "courses_in_department": "3",
+    # "dept_course_1": "CSE431",
+    # "dept_course_2": "CSE311",
+    # "dept_course_3": "CSE220",
+    # "num_meeting_times": "2",
+    # "meeting_time_1_id": "1",
+    # "meeting_time_1": "TTH 10:00 - 11:00",
+    # "meeting_time_2_id": "2",
+    # "meeting_time_2": "MWF 13:00 - 14:00"
+    # }
+   

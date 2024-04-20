@@ -48,21 +48,12 @@ class Data(object):
             max_students = int(data_dict[f"course_{i}_max_students"])
             num_instructors = int(data_dict[f"course_{i}_num_instructors"])
 
-            # Use get method with a default value to avoid KeyError
             instructor_ids = [data_dict.get(f"course_{i}_instructor_{j}_id", None) for j in range(1, num_instructors + 1)]
-            
-            # Filter out None values
             instructor_ids = [id_ for id_ in instructor_ids if id_ is not None]
-            
-            # Retrieve instructors based on IDs
             instructors = [inst for inst in self.instructors if inst.id in instructor_ids]
             course = Course(number=course_number, name=course_name, max_number_of_students=max_students, instructors=instructors)
             courses.append(course)
         return courses
-
-
-
-
 
 
     def initialize_departments(self, data_dict):
