@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule</title>
+</head>
+<body>
+    <h1>Schedule Information</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Class #</th>
+                <th>Dept</th>
+                <th>Course</th>
+                <th>Room</th>
+                <th>Instructor</th>
+                <th>Meeting Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in schedule_info %}
+            <tr>
+                <td>{{ row['Class #'] }}</td>
+                <td>{{ row['Dept'] }}</td>
+                <td>{{ row['Course'] }}</td>
+                <td>{{ row['Room'] }}</td>
+                <td>{{ row['Instructor'] }}</td>
+                <td>{{ row['Meeting Time'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
