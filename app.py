@@ -12,7 +12,7 @@ def index():
 def run_script():
     data = request.form.to_dict()
     data_json = json.dumps(data)
- 
+    
     try:
         # Run the script and capture the output
         result = subprocess.run(['python', 'Timetable/src/driver.py', data_json], capture_output=True, text=True)

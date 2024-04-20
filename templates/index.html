@@ -54,14 +54,13 @@
 
         <input type="submit" value="Run Script">
     </form>
-
     <script>
         let roomCount = 0;
         let instructorCount = 0;
         let courseCount = 0;
         let departmentCourseCount = 0;
         let meetingTimeCount = 0;
-
+    
         function addRoom() {
             roomCount++;
             let div = document.createElement('div');
@@ -73,7 +72,7 @@
             `;
             document.getElementById('rooms_input').appendChild(div);
         }
-
+    
         function addInstructor() {
             instructorCount++;
             let div = document.createElement('div');
@@ -85,7 +84,7 @@
             `;
             document.getElementById('instructors_input').appendChild(div);
         }
-
+    
         function addCourse() {
             courseCount++;
             let div = document.createElement('div');
@@ -96,10 +95,10 @@
                 <input type="text" id="course_${courseCount}_name" name="course_${courseCount}_name">
                 <label for="course_${courseCount}_max_students">Max Students:</label>
                 <input type="text" id="course_${courseCount}_max_students" name="course_${courseCount}_max_students"><br><br>
-
+    
                 <label for="course_${courseCount}_num_instructors">Number of Instructors for this Course:</label>
                 <input type="text" id="course_${courseCount}_num_instructors" name="course_${courseCount}_num_instructors"><br><br>
-
+    
                 <div id="course_${courseCount}_instructors_input">
                     <!-- Instructors for this course input fields will be added dynamically -->
                 </div>
@@ -107,13 +106,12 @@
             `;
             document.getElementById('courses_input').appendChild(div);
         }
-
+    
         function addCourseInstructor(courseNum) {
             let instructorNum = document.getElementById(`course_${courseNum}_num_instructors`).value;
             let div = document.createElement('div');
             div.innerHTML = '';
             for (let i = 1; i <= instructorNum; i++) {
-                instructorCount++;
                 div.innerHTML += `
                     <label for="course_${courseNum}_instructor_${i}_id">Instructor ID:</label>
                     <input type="text" id="course_${courseNum}_instructor_${i}_id" name="course_${courseNum}_instructor_${i}_id"><br><br>
@@ -121,7 +119,7 @@
             }
             document.getElementById(`course_${courseNum}_instructors_input`).appendChild(div);
         }
-
+    
         function addDepartmentCourse() {
             departmentCourseCount++;
             let div = document.createElement('div');
@@ -131,7 +129,7 @@
             `;
             document.getElementById('department_courses_input').appendChild(div);
         }
-
+    
         function addMeetingTime() {
             meetingTimeCount++;
             let div = document.createElement('div');
@@ -144,5 +142,6 @@
             document.getElementById('meeting_times_input').appendChild(div);
         }
     </script>
+    
 </body>
 </html>
