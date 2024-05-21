@@ -2,58 +2,59 @@
 <html>
 <head>
     <title>Input Form</title>
-</head>
-<body>
-    <h1>Enter Inputs</h1>
-    <form action="/run_script" method="post">
-        <label for="num_rooms">Number of Rooms:</label>
-        <input type="text" id="num_rooms" name="num_rooms"><br><br>
-
-        <div id="rooms_input">
-            <!-- Room input fields will be added dynamically -->
-        </div>
-        <button type="button" onclick="addRoom()">Add Room</button><br><br>
-
-        <label for="num_instructors">Number of Instructors:</label>
-        <input type="text" id="num_instructors" name="num_instructors"><br><br>
-
-        <div id="instructors_input">
-            <!-- Instructor input fields will be added dynamically -->
-        </div>
-        <button type="button" onclick="addInstructor()">Add Instructor</button><br><br>
-
-        <label for="num_courses">Number of Courses:</label>
-        <input type="text" id="num_courses" name="num_courses"><br><br>
-
-        <div id="courses_input">
-            <!-- Course input fields will be added dynamically -->
-        </div>
-        <button type="button" onclick="addCourse()">Add Course</button><br><br>
-
-        <label for="num_departments">Number of Departments:</label>
-        <input type="text" id="num_departments" name="num_departments"><br><br>
-
-        <label for="department_name">Department Name:</label>
-        <input type="text" id="department_name" name="department_name"><br><br>
-
-        <label for="courses_in_department">Number of Courses in this Department:</label>
-        <input type="text" id="courses_in_department" name="courses_in_department"><br><br>
-
-        <div id="department_courses_input">
-            <!-- Department courses input fields will be added dynamically -->
-        </div>
-        <button type="button" onclick="addDepartmentCourse()">Add Course</button><br><br>
-
-        <label for="num_meeting_times">Number of Meeting Times:</label>
-        <input type="text" id="num_meeting_times" name="num_meeting_times"><br><br>
-
-        <div id="meeting_times_input">
-            <!-- Meeting time input fields will be added dynamically -->
-        </div>
-        <button type="button" onclick="addMeetingTime()">Add Meeting Time</button><br><br>
-
-        <input type="submit" value="Run Script">
-    </form>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px 0;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .section-title {
+            margin: 20px 0 10px;
+            color: #555;
+            font-size: 18px;
+            border-bottom: 2px solid #ddd;
+        }
+    </style>
     <script>
         let roomCount = 0;
         let instructorCount = 0;
@@ -68,7 +69,7 @@
                 <label for="room_${roomCount}_number">Room Number:</label>
                 <input type="text" id="room_${roomCount}_number" name="room_${roomCount}_number">
                 <label for="room_${roomCount}_capacity">Seating Capacity:</label>
-                <input type="text" id="room_${roomCount}_capacity" name="room_${roomCount}_capacity"><br><br>
+                <input type="text" id="room_${roomCount}_capacity" name="room_${roomCount}_capacity">
             `;
             document.getElementById('rooms_input').appendChild(div);
         }
@@ -80,7 +81,7 @@
                 <label for="instructor_${instructorCount}_id">Instructor ID:</label>
                 <input type="text" id="instructor_${instructorCount}_id" name="instructor_${instructorCount}_id">
                 <label for="instructor_${instructorCount}_name">Instructor Name:</label>
-                <input type="text" id="instructor_${instructorCount}_name" name="instructor_${instructorCount}_name"><br><br>
+                <input type="text" id="instructor_${instructorCount}_name" name="instructor_${instructorCount}_name">
             `;
             document.getElementById('instructors_input').appendChild(div);
         }
@@ -94,15 +95,11 @@
                 <label for="course_${courseCount}_name">Course Name:</label>
                 <input type="text" id="course_${courseCount}_name" name="course_${courseCount}_name">
                 <label for="course_${courseCount}_max_students">Max Students:</label>
-                <input type="text" id="course_${courseCount}_max_students" name="course_${courseCount}_max_students"><br><br>
-    
+                <input type="text" id="course_${courseCount}_max_students" name="course_${courseCount}_max_students">
                 <label for="course_${courseCount}_num_instructors">Number of Instructors for this Course:</label>
-                <input type="text" id="course_${courseCount}_num_instructors" name="course_${courseCount}_num_instructors"><br><br>
-    
-                <div id="course_${courseCount}_instructors_input">
-                    <!-- Instructors for this course input fields will be added dynamically -->
-                </div>
-                <button type="button" onclick="addCourseInstructor(${courseCount})">Add Instructor</button><br><br>
+                <input type="text" id="course_${courseCount}_num_instructors" name="course_${courseCount}_num_instructors">
+                <div id="course_${courseCount}_instructors_input"></div>
+                <button type="button" onclick="addCourseInstructor(${courseCount})">Add Instructor</button>
             `;
             document.getElementById('courses_input').appendChild(div);
         }
@@ -114,7 +111,7 @@
             for (let i = 1; i <= instructorNum; i++) {
                 div.innerHTML += `
                     <label for="course_${courseNum}_instructor_${i}_id">Instructor ID:</label>
-                    <input type="text" id="course_${courseNum}_instructor_${i}_id" name="course_${courseNum}_instructor_${i}_id"><br><br>
+                    <input type="text" id="course_${courseNum}_instructor_${i}_id" name="course_${courseNum}_instructor_${i}_id">
                 `;
             }
             document.getElementById(`course_${courseNum}_instructors_input`).appendChild(div);
@@ -125,7 +122,7 @@
             let div = document.createElement('div');
             div.innerHTML = `
                 <label for="dept_course_${departmentCourseCount}">Course Number:</label>
-                <input type="text" id="dept_course_${departmentCourseCount}" name="dept_course_${departmentCourseCount}"><br><br>
+                <input type="text" id="dept_course_${departmentCourseCount}" name="dept_course_${departmentCourseCount}">
             `;
             document.getElementById('department_courses_input').appendChild(div);
         }
@@ -137,11 +134,50 @@
                 <label for="meeting_time_${meetingTimeCount}_id">Meeting Time ID:</label>
                 <input type="text" id="meeting_time_${meetingTimeCount}_id" name="meeting_time_${meetingTimeCount}_id">
                 <label for="meeting_time_${meetingTimeCount}">Meeting Time:</label>
-                <input type="text" id="meeting_time_${meetingTimeCount}" name="meeting_time_${meetingTimeCount}"><br><br>
+                <input type="text" id="meeting_time_${meetingTimeCount}" name="meeting_time_${meetingTimeCount}">
             `;
             document.getElementById('meeting_times_input').appendChild(div);
         }
     </script>
-    
+</head>
+<body>
+    <h1>Enter Inputs</h1>
+    <form action="/run_script" method="post">
+        <div class="section-title">Rooms</div>
+        <label for="num_rooms">Number of Rooms:</label>
+        <input type="text" id="num_rooms" name="num_rooms">
+        <div id="rooms_input"></div>
+        <button type="button" onclick="addRoom()">Add Room</button>
+
+        <div class="section-title">Instructors</div>
+        <label for="num_instructors">Number of Instructors:</label>
+        <input type="text" id="num_instructors" name="num_instructors">
+        <div id="instructors_input"></div>
+        <button type="button" onclick="addInstructor()">Add Instructor</button>
+
+        <div class="section-title">Courses</div>
+        <label for="num_courses">Number of Courses:</label>
+        <input type="text" id="num_courses" name="num_courses">
+        <div id="courses_input"></div>
+        <button type="button" onclick="addCourse()">Add Course</button>
+
+        <div class="section-title">Departments</div>
+        <label for="num_departments">Number of Departments:</label>
+        <input type="text" id="num_departments" name="num_departments">
+        <label for="department_name">Department Name:</label>
+        <input type="text" id="department_name" name="department_name">
+        <label for="courses_in_department">Number of Courses in this Department:</label>
+        <input type="text" id="courses_in_department" name="courses_in_department">
+        <div id="department_courses_input"></div>
+        <button type="button" onclick="addDepartmentCourse()">Add Course</button>
+
+        <div class="section-title">Meeting Times</div>
+        <label for="num_meeting_times">Number of Meeting Times:</label>
+        <input type="text" id="num_meeting_times" name="num_meeting_times">
+        <div id="meeting_times_input"></div>
+        <button type="button" onclick="addMeetingTime()">Add Meeting Time</button>
+
+        <input type="submit" value="Run Script">
+    </form>
 </body>
 </html>
